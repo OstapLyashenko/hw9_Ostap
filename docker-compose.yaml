@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  server:
+    build: .
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html
+
+  composer:
+    image: composer:2.1.5
+    volumes:
+      - .:/app
+  db:
+    image: mysql:8.0.28
+    ports:
+      - 33066:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
